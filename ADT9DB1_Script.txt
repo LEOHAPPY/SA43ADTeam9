@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [ADT9DB1]    Script Date: 13/1/17 7:04:54 PM ******/
+/****** Object:  Database [ADT9DB1]    Script Date: 13/1/17 7:36:21 PM ******/
 CREATE DATABASE [ADT9DB1] ON  PRIMARY 
 ( NAME = N'ADT9DB1_Data', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL11.MSSQLSERVER\MSSQL\DATA\ADT9DB1_Data.mdf' , SIZE = 6848KB , MAXSIZE = UNLIMITED, FILEGROWTH = 10%)
  LOG ON 
@@ -69,7 +69,7 @@ EXEC sys.sp_db_vardecimal_storage_format N'ADT9DB1', N'ON'
 GO
 USE [ADT9DB1]
 GO
-/****** Object:  Table [dbo].[stationaryCatelogue]    Script Date: 13/1/17 7:04:54 PM ******/
+/****** Object:  Table [dbo].[stationaryCatelogue]    Script Date: 13/1/17 7:36:21 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -92,7 +92,7 @@ CREATE TABLE [dbo].[stationaryCatelogue](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[supplierList]    Script Date: 13/1/17 7:04:54 PM ******/
+/****** Object:  Table [dbo].[supplierList]    Script Date: 13/1/17 7:36:21 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -108,7 +108,7 @@ CREATE TABLE [dbo].[supplierList](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[transactionTable]    Script Date: 13/1/17 7:04:54 PM ******/
+/****** Object:  Table [dbo].[transactionTable]    Script Date: 13/1/17 7:36:21 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -128,7 +128,7 @@ CREATE TABLE [dbo].[transactionTable](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[user]    Script Date: 13/1/17 7:04:54 PM ******/
+/****** Object:  Table [dbo].[user]    Script Date: 13/1/17 7:36:21 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -143,7 +143,7 @@ CREATE TABLE [dbo].[user](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[userDepartmentList]    Script Date: 13/1/17 7:04:54 PM ******/
+/****** Object:  Table [dbo].[userDepartmentList]    Script Date: 13/1/17 7:36:21 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -162,6 +162,13 @@ CREATE TABLE [dbo].[userDepartmentList](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
+INSERT [dbo].[user] ([id], [name], [email], [departmentId], [role], [image]) VALUES (N'C0001', NULL, NULL, NULL, N'clerk', NULL)
+INSERT [dbo].[user] ([id], [name], [email], [departmentId], [role], [image]) VALUES (N'DH0001', NULL, NULL, NULL, N'departHeader', NULL)
+INSERT [dbo].[user] ([id], [name], [email], [departmentId], [role], [image]) VALUES (N'DR0001', NULL, NULL, NULL, N'departRep', NULL)
+INSERT [dbo].[user] ([id], [name], [email], [departmentId], [role], [image]) VALUES (N'E0001', NULL, NULL, NULL, N'employee', NULL)
+INSERT [dbo].[user] ([id], [name], [email], [departmentId], [role], [image]) VALUES (N'SM0001', NULL, NULL, NULL, N'StoreMag', NULL)
+INSERT [dbo].[user] ([id], [name], [email], [departmentId], [role], [image]) VALUES (N'SS0001', NULL, NULL, NULL, N'storeSuper', NULL)
+INSERT [dbo].[user] ([id], [name], [email], [departmentId], [role], [image]) VALUES (N'TDH001', NULL, NULL, NULL, N'tempDepartHeader', NULL)
 USE [master]
 GO
 ALTER DATABASE [ADT9DB1] SET  READ_WRITE 
