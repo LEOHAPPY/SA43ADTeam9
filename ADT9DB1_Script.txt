@@ -1,0 +1,168 @@
+USE [master]
+GO
+/****** Object:  Database [ADT9DB1]    Script Date: 13/1/17 7:04:54 PM ******/
+CREATE DATABASE [ADT9DB1] ON  PRIMARY 
+( NAME = N'ADT9DB1_Data', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL11.MSSQLSERVER\MSSQL\DATA\ADT9DB1_Data.mdf' , SIZE = 6848KB , MAXSIZE = UNLIMITED, FILEGROWTH = 10%)
+ LOG ON 
+( NAME = N'ADT9DB1_Log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL11.MSSQLSERVER\MSSQL\DATA\ADT9DB1_Log.ldf' , SIZE = 1024KB , MAXSIZE = 2048GB , FILEGROWTH = 1024KB )
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [ADT9DB1].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [ADT9DB1] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [ADT9DB1] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [ADT9DB1] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [ADT9DB1] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [ADT9DB1] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [ADT9DB1] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [ADT9DB1] SET AUTO_CREATE_STATISTICS ON 
+GO
+ALTER DATABASE [ADT9DB1] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [ADT9DB1] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [ADT9DB1] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [ADT9DB1] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [ADT9DB1] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [ADT9DB1] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [ADT9DB1] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [ADT9DB1] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [ADT9DB1] SET  ENABLE_BROKER 
+GO
+ALTER DATABASE [ADT9DB1] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [ADT9DB1] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [ADT9DB1] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [ADT9DB1] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [ADT9DB1] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [ADT9DB1] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [ADT9DB1] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [ADT9DB1] SET RECOVERY FULL 
+GO
+ALTER DATABASE [ADT9DB1] SET  MULTI_USER 
+GO
+ALTER DATABASE [ADT9DB1] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [ADT9DB1] SET DB_CHAINING OFF 
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'ADT9DB1', N'ON'
+GO
+USE [ADT9DB1]
+GO
+/****** Object:  Table [dbo].[stationaryCatelogue]    Script Date: 13/1/17 7:04:54 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[stationaryCatelogue](
+	[id] [nvarchar](255) NOT NULL,
+	[category] [nvarchar](255) NULL,
+	[description] [nvarchar](255) NULL,
+	[recorderLevel] [int] NULL,
+	[recorderQty] [int] NULL,
+	[unitOfMeasure] [nvarchar](255) NULL,
+	[binNum] [nvarchar](255) NULL,
+	[latestBalance] [int] NULL,
+	[supplier1Id] [nvarchar](255) NULL,
+	[price1] [nvarchar](255) NULL,
+	[supplier2Id] [nvarchar](255) NULL,
+	[price2] [nvarchar](255) NULL,
+	[supplier3Id] [nvarchar](255) NULL,
+	[price3] [nvarchar](255) NULL
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[supplierList]    Script Date: 13/1/17 7:04:54 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[supplierList](
+	[id] [nvarchar](255) NOT NULL,
+	[gstRegisNum] [nvarchar](255) NULL,
+	[supplierName] [nvarchar](255) NULL,
+	[contactName] [nvarchar](255) NULL,
+	[phone] [nvarchar](255) NULL,
+	[fax] [nvarchar](255) NULL,
+	[address] [nvarchar](max) NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[transactionTable]    Script Date: 13/1/17 7:04:54 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[transactionTable](
+	[id] [nvarchar](255) NOT NULL,
+	[itemId] [nvarchar](255) NULL,
+	[requestDate] [datetime] NULL,
+	[responseDate] [datetime] NULL,
+	[itemRequestQty] [int] NULL,
+	[itemResponseQty] [int] NULL,
+	[userRequestId] [nvarchar](255) NULL,
+	[userResponseId] [nvarchar](255) NULL,
+	[autorisedBy] [nvarchar](255) NULL,
+	[remark] [nvarchar](max) NULL,
+	[status] [nvarchar](255) NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[user]    Script Date: 13/1/17 7:04:54 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[user](
+	[id] [nvarchar](255) NOT NULL,
+	[name] [nvarchar](255) NULL,
+	[email] [nvarchar](255) NULL,
+	[departmentId] [nvarchar](255) NULL,
+	[role] [nvarchar](255) NULL,
+	[image] [nvarchar](255) NULL
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[userDepartmentList]    Script Date: 13/1/17 7:04:54 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[userDepartmentList](
+	[id] [nvarchar](255) NOT NULL,
+	[departmentName] [nvarchar](255) NULL,
+	[contactName] [nvarchar](255) NULL,
+	[phone] [nvarchar](255) NULL,
+	[fax] [nvarchar](255) NULL,
+	[headerId] [nvarchar](255) NULL,
+	[headerName] [nvarchar](50) NULL,
+	[repId] [nvarchar](255) NULL,
+	[repName] [nvarchar](255) NULL,
+	[collectionPoint] [nvarchar](max) NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+USE [master]
+GO
+ALTER DATABASE [ADT9DB1] SET  READ_WRITE 
+GO
