@@ -5,8 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    
     <style type="text/css">
+
 body {
     font: normal .9em/1.5em Arial, Helvetica, sans-serif;
 	background: #f4f3ef;
@@ -20,11 +20,15 @@ body {
     //color:#680c0c;
      font: normal .9em/1.5em Arial, Helvetica, sans-serif;  
 }
-
-
-a {
-	color: #333;
+#logo table{
+    border:none;
 }
+#main {
+    float:unset;
+}
+
+a {color: #333;}
+
 #nav {
     clear:right;
     margin-top:1px;	
@@ -171,7 +175,54 @@ html[xmlns] #nav {
 * html #nav {
 	height: 1%;
 }
+
+table {
+    border-collapse: collapse;
+    text-align:center;
+}
+
+th, td {
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #C2D69B}
+
+th {
+    background-color: navy;
+    color: white;
+}
+
+/*form Grid view Pagination Design*/
+.Grid{text-align:center;}
+.Grid .alt {background: #fcfcfc url(Images/grid-alt.png) repeat-x top; }
+
+.Grid .pgr {background: #363670 url(Images/grid-pgr.png) repeat-x top; }
+
+.Grid .pgr table { margin: 3px 0; }
+
+.Grid .pgr td { border-width: 0; padding: 0 6px; border-left: solid 1px #666; font-weight: bold; color: #fff; line-height: 12px; }  
+
+.Grid .pgr a { color: Gray; text-decoration: none; }
+
+.Grid .pgr a:hover { color: #000; text-decoration: none; }
+/*----- For button Design  ------*/
+.button {
+    border: none;
+    color: white;
+    background-color: #efa14b; 
+    padding: 10px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
 </style>
+    
+
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -182,7 +233,7 @@ html[xmlns] #nav {
      <table>
          <tr> 
              <td>Logged in as: <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-                 <br /><a href="">You have ? notifications</a>
+                 <br /><a href="https://mail.google.com/mail">You have  notifications</a>
                  <br /><asp:LoginStatus ID="LoginStatus1" runat="server" />
              </td>
              <td><asp:Image runat="server" id="userImage"/></td>
@@ -193,8 +244,8 @@ html[xmlns] #nav {
      <%--Menu(Nav)--%>     
     <div>   
     <ul id="nav" >
-	<li  class="current"><a href="requestList.aspx">Requisition</a></li>
-    <li><a href="retrieval.aspx">Retrieval</a></li>
+	<li  class="current"><a href="ClerkDefaultPage.aspx">Requisition</a></li>
+    <li><a href="retrieval.aspx?menu=yes">Retrieval</a></li>
     <li><a href="discrepancy.aspx">Discrepancy</a></li>
 	<li><a href="">Inventory</a>
 		<ul>
@@ -222,7 +273,7 @@ html[xmlns] #nav {
 	<li><a href="#">Contact Us</a></li>--%>
 </ul>
     </div>
-    <div>
+    <div id="main">
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>

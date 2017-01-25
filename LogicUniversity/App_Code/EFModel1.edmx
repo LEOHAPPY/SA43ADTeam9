@@ -11,7 +11,6 @@
           </Key>
           <Property Name="id" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="disbursementDate" Type="date" />
-          <Property Name="acknowledgedBy" Type="nvarchar" MaxLength="255" />
           <Property Name="issuedBy" Type="nvarchar" MaxLength="255" />
           <Property Name="status" Type="nvarchar" MaxLength="255" />
           <Property Name="remark" Type="nvarchar" MaxLength="255" />
@@ -23,6 +22,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="packageListId" Type="nvarchar" MaxLength="255" />
           <Property Name="departmentId" Type="nvarchar" MaxLength="255" />
+          <Property Name="acknowledgedBy" Type="nvarchar" MaxLength="255" />
           <Property Name="itemId" Type="nvarchar" MaxLength="255" />
           <Property Name="requestQty" Type="int" />
           <Property Name="issusedQty" Type="int" />
@@ -129,6 +129,18 @@
             </Principal>
             <Dependent Role="packageListItems">
               <PropertyRef Name="packageListId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_packageListItems_packageListItems">
+          <End Role="packageListItems" Type="Self.packageListItems" Multiplicity="1" />
+          <End Role="packageListItems1" Type="Self.packageListItems" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="packageListItems">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="packageListItems1">
+              <PropertyRef Name="id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -254,6 +266,10 @@
             <End Role="packageList" EntitySet="packageList" />
             <End Role="packageListItems" EntitySet="packageListItems" />
           </AssociationSet>
+          <AssociationSet Name="FK_packageListItems_packageListItems" Association="Self.FK_packageListItems_packageListItems">
+            <End Role="packageListItems" EntitySet="packageListItems" />
+            <End Role="packageListItems1" EntitySet="packageListItems" />
+          </AssociationSet>
           <AssociationSet Name="FK_packageListItems_stationaryCatelogue" Association="Self.FK_packageListItems_stationaryCatelogue">
             <End Role="stationaryCatelogue" EntitySet="stationaryCatelogue" />
             <End Role="packageListItems" EntitySet="packageListItems" />
@@ -302,7 +318,6 @@
           </Key>
           <Property Name="id" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="disbursementDate" Type="DateTime" Precision="0" />
-          <Property Name="acknowledgedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="issuedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="status" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="remark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -316,12 +331,15 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="packageListId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="departmentId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="acknowledgedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="itemId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="requestQty" Type="Int32" />
           <Property Name="issusedQty" Type="Int32" />
           <Property Name="finalQty" Type="Int32" />
           <Property Name="remark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="packageList" Relationship="Self.FK_packageListItems_packageList" FromRole="packageListItems" ToRole="packageList" />
+          <NavigationProperty Name="packageListItems1" Relationship="Self.FK_packageListItems_packageListItems" FromRole="packageListItems" ToRole="packageListItems1" />
+          <NavigationProperty Name="packageListItem1" Relationship="Self.FK_packageListItems_packageListItems" FromRole="packageListItems1" ToRole="packageListItems" />
           <NavigationProperty Name="stationaryCatelogue" Relationship="Self.FK_packageListItems_stationaryCatelogue" FromRole="packageListItems" ToRole="stationaryCatelogue" />
           <NavigationProperty Name="userDepartmentList" Relationship="Self.FK_packageListItems_userDepartmentList" FromRole="packageListItems" ToRole="userDepartmentList" />
         </EntityType>
@@ -455,6 +473,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_packageListItems_packageListItems">
+          <End Role="packageListItems" Type="Self.packageListItem" Multiplicity="1" />
+          <End Role="packageListItems1" Type="Self.packageListItem" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="packageListItems">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="packageListItems1">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_packageListItems_stationaryCatelogue">
           <End Role="stationaryCatelogue" Type="Self.stationaryCatelogue" Multiplicity="0..1" />
           <End Role="packageListItems" Type="Self.packageListItem" Multiplicity="*" />
@@ -551,7 +581,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ADT9DB1Entities3" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ADT9DB1Entities4" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="packageLists" EntityType="Self.packageList" />
           <EntitySet Name="packageListItems" EntityType="Self.packageListItem" />
           <EntitySet Name="stationaryCatelogues" EntityType="Self.stationaryCatelogue" />
@@ -568,6 +598,10 @@
           <AssociationSet Name="FK_transactionList_packageList" Association="Self.FK_transactionList_packageList">
             <End Role="packageList" EntitySet="packageLists" />
             <End Role="transactionList" EntitySet="transactionLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_packageListItems_packageListItems" Association="Self.FK_packageListItems_packageListItems">
+            <End Role="packageListItems" EntitySet="packageListItems" />
+            <End Role="packageListItems1" EntitySet="packageListItems" />
           </AssociationSet>
           <AssociationSet Name="FK_packageListItems_stationaryCatelogue" Association="Self.FK_packageListItems_stationaryCatelogue">
             <End Role="stationaryCatelogue" EntitySet="stationaryCatelogues" />
@@ -607,13 +641,12 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ADT9DB1ModelStoreContainer" CdmEntityContainer="ADT9DB1Entities3">
+        <EntityContainerMapping StorageEntityContainer="ADT9DB1ModelStoreContainer" CdmEntityContainer="ADT9DB1Entities4">
           <EntitySetMapping Name="packageLists">
             <EntityTypeMapping TypeName="ADT9DB1Model.packageList">
               <MappingFragment StoreEntitySet="packageList">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="disbursementDate" ColumnName="disbursementDate" />
-                <ScalarProperty Name="acknowledgedBy" ColumnName="acknowledgedBy" />
                 <ScalarProperty Name="issuedBy" ColumnName="issuedBy" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="remark" ColumnName="remark" />
@@ -626,6 +659,7 @@
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="packageListId" ColumnName="packageListId" />
                 <ScalarProperty Name="departmentId" ColumnName="departmentId" />
+                <ScalarProperty Name="acknowledgedBy" ColumnName="acknowledgedBy" />
                 <ScalarProperty Name="itemId" ColumnName="itemId" />
                 <ScalarProperty Name="requestQty" ColumnName="requestQty" />
                 <ScalarProperty Name="issusedQty" ColumnName="issusedQty" />

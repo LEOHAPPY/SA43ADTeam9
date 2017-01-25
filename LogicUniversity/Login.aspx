@@ -4,11 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
+  
 <style>
     .bo {
         background-color: #f8f4ee;

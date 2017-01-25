@@ -21,7 +21,6 @@ public partial class packageList
 
     public string id { get; set; }
     public Nullable<System.DateTime> disbursementDate { get; set; }
-    public string acknowledgedBy { get; set; }
     public string issuedBy { get; set; }
     public string status { get; set; }
     public string remark { get; set; }
@@ -37,6 +36,7 @@ public partial class packageListItem
     public int id { get; set; }
     public string packageListId { get; set; }
     public string departmentId { get; set; }
+    public string acknowledgedBy { get; set; }
     public string itemId { get; set; }
     public Nullable<int> requestQty { get; set; }
     public Nullable<int> issusedQty { get; set; }
@@ -44,6 +44,8 @@ public partial class packageListItem
     public string remark { get; set; }
 
     public virtual packageList packageList { get; set; }
+    public virtual packageListItem packageListItems1 { get; set; }
+    public virtual packageListItem packageListItem1 { get; set; }
     public virtual stationaryCatelogue stationaryCatelogue { get; set; }
     public virtual userDepartmentList userDepartmentList { get; set; }
 }
