@@ -154,6 +154,8 @@ public partial class transactionList
     public string type { get; set; }
     public string packageListId { get; set; }
 
+    public string departmentId { get; set; }
+
     public virtual packageList packageList { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<transactionListItem> transactionListItems { get; set; }
@@ -167,6 +169,12 @@ public partial class transactionListItem
     public Nullable<int> requestQty { get; set; }
     public Nullable<int> finalQty { get; set; }
     public string remark { get; set; }
+
+    public int adjustment { get; set; }
+    public string description { get; set; }
+
+    public string departmentId { get; set; }
+
 
     public virtual stationaryCatelogue stationaryCatelogue { get; set; }
     public virtual transactionList transactionList { get; set; }
